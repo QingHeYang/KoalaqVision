@@ -116,7 +116,7 @@ environment:
 完整的配置选项请查看 [配置指南](docs/zh/configuration.md)。
 
 ## 系统流程
-实物匹配：
+实物匹配：  
 ![object](./docs/images/object_match.jpg)  
 
 人脸匹配：  
