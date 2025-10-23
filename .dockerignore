@@ -1,0 +1,82 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Python
+__pycache__
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv
+venv/
+ENV/
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+.DS_Store
+
+# 验证数据集（开发用）
+val/
+
+# 用户上传数据（不需要打包到镜像）
+data/upload/
+data/temp/
+
+# Deploy 目录的运行时数据（不需要打包）
+deploy/data/
+
+# Weaviate 数据（不需要打包）
+deploy/weaviate
+deploy/data
+deploy/docker-compose*
+deploy/Dockerfile
+deploy/package.sh
+docs/
+deploy/.build_history
+
+# 排除不需要的模型文件（只保留必需的）
+# 保留: dinov3-vitl16, dinov3-vits16, U2Net, buffalo_s, minifasnet
+data/models/dinov3-vith16plus/
+data/models/dinov3-vitb16/
+data/models/BiRefNet/
+data/models/buffalo_l/
+data/models/buffalo_sc/
+data/models/7z
+
+# 日志
+*.log
+logs/
+
+# 临时文件
+*.tmp
+*.bak
+*.swp
+
+# 文档和脚本（不需要在镜像中）
+*.md
+!requirements.txt
+.env.local
+.env.*.local
+
+# 部署相关（不需要在镜像中）
+docker-compose*.yml
+docker-compose-release.yml
+start-compose.sh
+.dockerignore
+
+# 开发工具
+.pytest_cache
+.coverage
+htmlcov/
+
+# 其他
+*.zip
+*.tar.gz
+.claude/
+
+CLAUDE.md

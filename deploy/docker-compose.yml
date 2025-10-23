@@ -1,0 +1,93 @@
+services:
+  # KoalaqVision Main Service
+  koalaqvision:
+    image: 775495797/koalaqvision:latest
+    container_name: koalaq-vision
+    restart: unless-stopped
+    ports:
+      - "10770:10770"
+    environment:
+      #=========== APPLICATION MODE CONFIGURATION ===========
+      - APP_MODE=face # Options: face | object |
+
+      #=========== OBJECT DETECTION MODEL CONFIGURATION ===========
+      - DINOV3_MODEL=vits16 # Options: vitl16 | vits16 |
+      - BG_REMOVAL_MODEL=u2net # Options: u2net | u2netp |
+      - ONNX_THREAD_MODE=auto # Options: auto | performance | single |
+
+      #=========== FACE RECOGNITION MODEL CONFIGURATION ===========
+      - FACE_MODEL_NAME=buffalo_s # Options: antelopev2 | buffalo_s |
+
+      #=========== WEAVIATE CONFIGURATION ===========
+      #- WEAVIATE_URL=http://localhost:10769
+      #- WEAVIATE_API_KEY=your_api_key_here
+
+      #=========== SSL CONFIGURATION ===========
+      #- SSL_ENABLED=false
+
+    volumes:
+      - ./data/upload:/app/data/upload
+      - ./data/temp:/app/data/temp
+      #- ./certs:/app/certs  # Uncomment if using SSL
+    networks:
+      - koalaq-network
+    depends_on:
+      - weaviate
+    deploy:
+      resources:
+        limits:
+          memory: 4G
+        reservations:
+          memory: 2G
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:10770/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+  # Weaviate Vector Database
+  weaviate:
+    image: semitechnologies/weaviate:1.24.1
+    container_name: koalaq-weaviate
+    restart: unless-stopped
+    ports:
+      - "10769:8080"   # HTTP API
+      - "50050:50051"  # gRPC port
+    volumes:
+      # Persist data to local directory (can also use Docker volume)
+      - ./weaviate:/var/lib/weaviate
+    environment:
+      # Basic Configuration
+      QUERY_DEFAULTS_LIMIT: 25
+      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
+      PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
+      DEFAULT_VECTORIZER_MODULE: 'none'
+      ENABLE_MODULES: ''
+      CLUSTER_HOSTNAME: 'node1'
+      AUTOSCHEMA_ENABLED: 'false'
+      LOG_LEVEL: 'info'
+
+      # Performance Optimization
+      GOMAXPROCS: '4'
+      LIMIT_RESOURCES: 'false'
+      GOMEMLIMIT: '2GiB'
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+        reservations:
+          memory: 1G
+    networks:
+      - koalaq-network
+
+# Networks
+networks:
+  koalaq-network:
+    name: koalaq-network
+    driver: bridge

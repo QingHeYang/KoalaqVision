@@ -1,0 +1,84 @@
+# Data directories - user generated content
+data/upload/
+data/temp/
+
+# ============================================================
+# AI Models - Exclude all models from git (too large for GitHub)
+# ============================================================
+# Users need to download models separately or use Docker image
+# Docker image includes all models (~576MB)
+# See: deploy/MODELS.md for model download instructions
+
+# Exclude all .onnx model files
+*.onnx
+*.onnx_data
+
+# Exclude all DINOv3 variants
+data/models/dinov3-vits16/
+data/models/dinov3-vitb16/
+data/models/dinov3-vitl16/
+data/models/dinov3-vith16plus/
+
+# Exclude all background removal models
+data/models/BiRefNet/
+data/models/U2Net/
+
+# Exclude all InsightFace models
+data/models/buffalo_s/
+data/models/buffalo_l/
+data/models/buffalo_sc/
+
+# Exclude liveness detection models
+data/models/minifasnet/
+
+# Keep model directory structure (but empty)
+!data/models/.gitkeep
+
+# Archives
+*.zip
+*.tar.gz
+
+# Package scripts (private, contains registry info)
+
+# Logs
+logs/
+*.log
+.koalaq.pid
+.package.conf
+.build_history
+
+# Python缓存
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# 环境变量
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+deploy/weaviate/*
+val/*
+.claude/*
+CLAUDE.md
+./models/*
+*.7z
+deploy/data/*
+deploy/.build_history
+deploy/.package.conf
+deploy/docker-compose-release.yml
+
+# Docker Compose release files (root directory)
+start-compose.sh
+deploy/package.sh

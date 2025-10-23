@@ -1,0 +1,48 @@
+# ============================================================
+# KoalaqVision - Default Installation (CPU)
+# ============================================================
+# Default installation: ONNX + CPU, suitable for most users
+#
+# Quick Start:
+#   pip install -r requirements.txt
+#
+# Features:
+#   ✅ Object mode (ONNX CPU)
+#   ✅ Face mode (ONNX CPU)
+#   ✅ Cross-platform (Linux/Windows/Mac)
+#   📦 Lightweight deployment
+#
+# Need GPU acceleration?
+#   → pip install -r requirements-onnx-gpu.txt
+#
+# Need PyTorch for training?
+#   → pip install -r requirements-pytorch.txt
+# ============================================================
+
+# Web Framework
+fastapi==0.115.5
+uvicorn[standard]==0.32.1
+python-multipart==0.0.18
+
+# Web UI
+gradio==5.49.1
+
+# Configuration
+pydantic>=2.10,<2.11
+pydantic-settings==2.5.2
+python-dotenv==1.0.1
+
+# Vector Database
+weaviate-client==4.9.4
+
+# Image Processing
+pillow==10.4.0
+numpy==1.26.4
+
+# ONNX Runtime (CPU)
+onnx==1.17.0
+onnxruntime==1.20.1
+
+# Face Recognition
+insightface>=0.7
+opencv-python-headless>=4.8.0

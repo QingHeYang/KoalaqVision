@@ -1,0 +1,73 @@
+# ============================================================
+# KoalaqVision - PyTorch Object Backend (GPU-Accelerated)
+# ============================================================
+# PyTorch backend for Object mode with GPU acceleration
+#
+# Prerequisites:
+#   ✅ NVIDIA GPU with CUDA support
+#   ✅ CUDA Toolkit 11.8 or 12.1
+#
+# Installation:
+#   # Option 1: Auto-detect CUDA version (recommended)
+#   pip install -r requirements-pytorch.txt
+#
+#   # Option 2: Specific CUDA version
+#   # CUDA 11.8:
+#   pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+#   pip install -r requirements-pytorch.txt
+#
+#   # CUDA 12.1:
+#   pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+#   pip install -r requirements-pytorch.txt
+#
+# Features:
+#   ✅ Object mode with PyTorch backend
+#   ✅ GPU-accelerated DINOv3 + BiRefNet
+#   ✅ Training and fine-tuning support
+#   ✅ All CPU/ONNX features included
+#
+# Performance (RTX 3090):
+#   🚀 Background removal: ~0.6s
+#   🚀 Feature extraction: ~0.05s
+#
+# Environment variables:
+#   OBJECT_BACKEND=pytorch  # Enable PyTorch backend
+#   USE_GPU=true            # Enable GPU acceleration
+# ============================================================
+
+# Include base dependencies (ONNX + CPU)
+-r requirements.txt
+
+# PyTorch (CUDA 12.1 by default, see above for other versions)
+torch==2.5.1
+torchvision==0.20.1
+torchaudio==2.5.1
+
+# Transformers (for loading DINOv3 and BiRefNet)
+transformers>=4.30.0
+
+# Image processing utilities
+timm>=0.9.0  # PyTorch Image Models
+
+# Optional: Visualization (for attention maps)
+matplotlib>=3.7.0
+
+# ============================================================
+# Notes:
+# ============================================================
+# 1. PyTorch will be installed with CUDA 12.1 support by default
+#
+# 2. For CPU-only PyTorch:
+#    pip install torch torchvision torchaudio
+#
+# 3. Verify GPU support:
+#    python -c "import torch; print(torch.cuda.is_available())"
+#    Should output: True
+#
+# 4. Check CUDA version:
+#    python -c "import torch; print(torch.version.cuda)"
+#
+# 5. Switch backend in .env:
+#    OBJECT_BACKEND=pytorch  # Use PyTorch
+#    OBJECT_BACKEND=onnx     # Use ONNX (default)
+# ============================================================
