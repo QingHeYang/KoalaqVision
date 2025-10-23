@@ -79,6 +79,8 @@ docker compose -f deploy/docker-compose.yml up -d
   - Simple test interface
   - Upload images and interactively test search functionality
 
+![](./docs/images/example.png)
+
 - **Swagger API Documentation**: http://localhost:10770/docs
 
 ### Local Deployment
@@ -115,10 +117,10 @@ For complete configuration options, see [Configuration Guide](docs/en/configurat
 
 ## System Flow
 
-Object Matching:
+Object Matching:  
 ![object](./docs/images/object_match.jpg)
 
-Face Matching:
+Face Matching:  
 ![face](./docs/images/face_match.jpg)
 
 ## Performance Metrics
