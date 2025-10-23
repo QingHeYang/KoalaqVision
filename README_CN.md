@@ -79,7 +79,10 @@ docker compose -f deploy/docker-compose.yml up -d
 
 - **Gradio UI**: http://localhost:10770/ui
   - 简单的测试界面
-  - 上传图片并交互式测试搜索功能
+  - 上传图片并交互式测试搜索功能  
+
+![](./docs/images/example.png)
+
 
 - **Swagger API 文档**: http://localhost:10770/docs
 

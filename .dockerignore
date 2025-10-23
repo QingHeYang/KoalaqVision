@@ -80,3 +80,5 @@ htmlcov/
 .claude/
 
 CLAUDE.md
+
+*.7z
